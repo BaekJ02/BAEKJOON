@@ -33,3 +33,62 @@
 
  <p>조건에 따라 정렬하여 단어들을 출력한다.</p>
 
+ ### 접근 방법
+ 단어의 개수 N과 단어들을 차례로 입력받아 배열에 저장한다.  
+ 그리고 그 단어들을 길이 순서로 정렬하고 길이 같을 경우 사전순으로 정렬한다. 
+ 그리고 중복된 단어는 하나만 저장한다.   
+ 정렬할 때는 sort(key=lambda x: x)를 사용한다.
+
+ ### 풀이
+ ```
+N = int(input())
+a = []
+for i in range(N):
+    word = input()
+    a.append(word)
+a_set = list(set(a))
+```
+단어 개수 N을 입력받고   
+N만큼 단어를 입력받아서 배열 a에 저장한다.
+그리고 중복 제거를 위해 list(set(a))로 a_set을 저장한다.   
+
+```
+result = []
+tmp = []
+
+
+max_a = max(a_set, key=len)
+for i in range(len(max_a)+1):
+    for j in range(len(a_set)):
+        if len(a_set[j]) == i:
+            tmp.append(a_set[j])
+    for i in range(i):
+        tmp.sort(key=lambda x: x)
+    result += tmp
+    tmp = []
+```
+배열에 있는 단어의 길이 중 제일 긴 단어의 길이만큼 반복문을 진행한다.   
+그리고 0 ~ 제일 긴 단어의 길이 중 길이가 같은 단어들만 임시 배열 tmp에   
+저장하여 다시 사전순으로 정렬하고 result에 추가한다.  
+이런 방법으로 한 이유는 
+```
+sort(key=lambda x: len(a), x[0])
+```
+처음 리스트를 저장하고 저렇게 정렬을 하면
+길이순으로 먼저 정렬을 하고 길이가 같을 경우 x[0] (단어의 앞 글자)의 사전순으로 정렬한다.   
+그런데 이렇게 하면 'abc', 'abb' 와 같이 x[0]이 같고 x[1] 또는 그 이후의 글자로 비교해야되는 경우가 발생한다.  
+x[0] -> x[1]으로 바꾸면 글자가 한 글자인 단어는 인덱스가 범위를 벗어나게 되고   
+단어의 길이에 따라 'aaaaaaab', 'aaaaaaad' 와 같은 경우가 발생하게 된다.   
+따라서 같은 길이의 단어들끼리 모아서 
+```
+tmp.sort(key=lambda x: x)
+```
+와 같이 정렬하면 사전순으로 정렬할 수 있다.
+이렇게 정렬한 배열을 모두 result에 차례로 저장한다.
+
+```
+for i in result:
+    print(i)
+```
+단어들을 배열이 아닌 한 줄에 한 단어씩 출력해야되기 때문에   
+반복문으로 단어 하나씩 출력한다. 
