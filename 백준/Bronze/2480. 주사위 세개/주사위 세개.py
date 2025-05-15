@@ -1,12 +1,10 @@
-x = list(map(int, input().split()))
+a, b, c = list(map(int, input().split()))
 
-x.sort()
-
-if (x[0] == x[1] and x[0] == x[2]):
-    print(10000 + x[0]*1000)
-elif (x[0] == x[1]) or (x[1] == x[2]):
-    print(1000+ x[1] * 100)
-elif x[0] == x[2]:
-    print(1000+ x[1] * 100)
+if a == b == c:
+    print(10000 + a*1000)
+elif a == b or b == c
+    print(1000+ b * 100)
+elif a == c:
+    print(1000+ a * 100)
 else:
-    print(max(x) * 100)
+    print(max(a, b, c) * 100)
