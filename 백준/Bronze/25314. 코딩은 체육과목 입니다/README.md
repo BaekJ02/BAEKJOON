@@ -32,3 +32,32 @@
 
  <p>혜아가 <mjx-container class="MathJax" jax="CHTML" style="font-size: 109%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>N</mi></math></mjx-assistive-mml><span aria-hidden="true" class="no-mathjax mjx-copytext">$N$</span></mjx-container>바이트 정수까지 저장할 수 있다고 생각하는 정수 자료형의 이름을 출력하여라.</p>
 
+### 접근 방법
+4바이트당 하나씩 출력이니까 4//1을 해주고 그 값만큼 반복해주면 된다. 
+
+### 풀이
+```
+print("long ")
+```
+과 같이하면
+```
+long
+long
+long
+int
+```
+와 같이 줄바꿈이 되기 때문에
+```
+print("long", end = "")
+```
+다음과 같이 바꿔주고 출력하면 정상적으로 출력된다.
+```
+print("long", end = "\n")
+```
+디폴트 값은 저렇게 설정되어 자동으로 줄바꿈이 됨.
+
+### 정리
+```
+print("long", end = "")
+```
+줄바꿈 되지 않는 코드 기억
