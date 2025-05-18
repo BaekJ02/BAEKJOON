@@ -38,3 +38,36 @@
 
  <p>각 테스트케이스마다 A+B를 한 줄에 하나씩 순서대로 출력한다.</p>
 
+### 접근 방법
+입력을 input이 아닌   
+sys.stdin.readline()으로 받는다.   
+
+### 풀이
+```
+sys.stdin.readline()
+```
+을 사용하기 위해서는
+```
+import sys
+```
+다음과 같이 선언하고
+
+```
+a = sys.stdin.readline()
+```
+과 같이 사용한다.
+
+a, b 를 동시에 입력받기 위해서 map 함수를 사용할 때도
+```
+a, b = map(int, input().split())
+```
+에서 input()을 sys.stdin.readline()으로 바꿔준다.
+```
+->
+a, b = map(int, sys.stdin.readline().split())
+```
+
+### 정리
+sys.stdin.readline()을 사용하면 input()보다 더 빠르게 읽을 수 있다고 한다.   
+정확한 사용 방법이나 언제 사용해야되는지 등은 잘 모르겠다. 
+
